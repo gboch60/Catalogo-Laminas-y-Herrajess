@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Boch's Láminas y Herrajes</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Merriweather">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+        <style type="text/css">
+			.w3-merriweather {
+			  font-family: "Merriweather", serif;
+			}
+			#loader {
+			  position: absolute;
+			  left: 50%;
+			  top: 50%;
+			  z-index: 1;
+			  width: 120px;
+			  height: 120px;
+			  margin: -76px 0 0 -76px;
+			  border: 16px solid #f3f3f3;
+			  border-radius: 50%;
+			  border-top: 16px solid #000000;
+			  -webkit-animation: spin 2s linear infinite;
+			  animation: spin 2s linear infinite;
+			}
+
+			@-webkit-keyframes spin {
+			  0% { -webkit-transform: rotate(0deg); }
+			  100% { -webkit-transform: rotate(360deg); }
+			}
+			.notSelTxt{
+			  -webkit-user-select: none; /* Safari */
+			  -ms-user-select: none; /* IE 10 and IE 11 */
+			  user-select: none; /* Standard syntax */
+			}
+			@keyframes spin {
+			  0% { transform: rotate(0deg); }
+			  100% { transform: rotate(360deg); }
+			}
+			.bar-search {
+			  outline: none !important;
+			  padding: 7px 7px 9px 7px;
+			  color: #333;
+			  font-size: 16px;
+			  height: 39px;
+			  margin-top: 10px;
+			}
+			.bar-height{
+			  height: 60px;
+			}
+			.bar-logo{
+			  margin-top: 5px;
+			  height: 50px;
+			  width: 50px;
+			}
+			.bar-cart{
+			  padding-top: 20px;
+			  padding-left: 5%;
+			  width:30%;
+			}
+			.bar-neg{
+			  overflow: hidden;
+			  width:300px;
+			   text-overflow: ellipsis;
+			   display: -webkit-box;
+			   -webkit-line-clamp: 2;
+			   -webkit-box-orient: vertical;
+			   line-height: normal;
+			}
+
+			.bar-neg-sub{
+			  display: none;
+			}
+			.cnt-ctr-lar{
+			  margin-top: 100px;
+			}
+			.cnt-ctr-sml{
+
+			    display: none;
+			    background: #FFF;
+			}
+
+			.thbGrd{
+			  max-width: 98%;
+			  max-height: 98%;
+			  font-size: 140px;
+			}
+
+			.inpDraLef{
+			  position: absolute;
+			  margin-top: 10px;
+			  margin-left: 5px;
+			}
+
+			.btnWhts{
+			  padding: 5px;
+			  position:fixed;
+			  width:60px;
+			  height:60px;
+			  bottom:40px;
+			  right:40px;
+			  background-color:#25d366;
+			  color:#FFF;
+			  border-radius:50px;
+			  text-align:center;
+			  font-size:30px;
+			  box-shadow: 2px 2px 3px #999;
+			  z-index:100;
+			}
+			.ctnItm{
+			  min-height: 800px;
+			}
+			.ctnCtgDro{
+			  max-height: 300px;
+			  overflow: auto;
+			  width: 250px;
+			}
+			.ctnSrtDro{
+			  width: 180px;
+			}
+			.fxd{
+			  position: fixed;
+			  top:0;
+			  left:0;
+			  width: 100%;
+			  z-index: 1000;
+			}
+			.mrgItm{
+			  margin-left: 8%;
+			  margin-right: 8%;
+			}
+			.pointer{
+				cursor: pointer;
+			}
+			.btnPag{
+				color: #1A73E8;
+				border: none;
+				background: transparent;
+			}
+			.pagCur{
+				padding-top: 5px;
+				padding-bottom: 5px;
+				padding-left: 12px;
+				padding-right: 12px;
+				background: #0000000C;
+				font-weight: bold;
+			}
+			.spc50{
+				margin-top: 50px;
+			}
+			.inNum{
+			  	width: 90px;
+			  	text-align: center;
+			 }
+
+			@media screen and (max-width: 1200px) {
+			  .bar-cart{
+			    padding-top: 20px;
+			    padding-left: 3%;
+			    width:20%;
+			  }
+			  .mrgItm{
+			    margin-left: 4%;
+			    margin-right: 4%;
+			  }
+			}
+
+			@media screen and (max-width: 760px) {
+			  .bar-neg{
+			    display: none;
+			  }
+			  .bar-cart{
+			    padding-left: 16px;
+			    width:80px;
+			  }
+
+
+			  .bar-neg-sub{
+			    display: block;
+			  }
+			  .content-cat{
+			    display: none;
+			  }
+			  .cnt-ctr-lar{
+			    display: none;
+			  }
+			  .cnt-ctr-sml{
+			    display: block;
+			    background: #FFF;
+			  }
+
+			  .ctnItm{
+			    min-height: 400px;
+			  }
+			  .mrgItm{
+			    margin-left: 2%;
+			    margin-right: 2%;
+			  }
+			  .btnPag{
+				color: #1A73E8;
+				border: none;
+				background: transparent;
+				font-size: 11px;
+			  }
+			  .spc50{
+				margin-top: 25px;
+			  }
+			  .inNum{
+			  	width: 60px;
+			  	text-align: center;
+			  }
+
+			}
+
+		</style>
+
+
+    </head>
+    <body ng-app='app' style="background-color: #ebebeb;" ng-controller='ctrMan' ng-cloack>
+
+        <div id="loader"></div>
+        <div id="ctnMan" style="visibility: hidden;">
+            <div class="w3-row {{clt}} fxd" >
+                <div class="w3-col w3-left w3-container bar-height" style="width:80px">
+                    <img id="lg" src="logo.png" class="w3-round bar-logo" alt="">
+                </div>
+                <div class="w3-col w3-left w3-container bar-height bar-neg">
+                    <h4 id="labNeg"  class="w3-merriweather" style="font-weight: bold; line-height: 22px;margin: 5px 0px; line-height: 25px; visibility: hidden;" ng-model="ngc">{{ngc}}</h4>
+                </div>
+                <div class="w3-col w3-right w3-center bar-height bar-cart" >
+                    <div ng-hide='!crt'>
+                        <i class="fa fa-shopping-cart  w3-xlarge pointer w3-left" ng-click='myCrt()' ></i>
+                        <span id="bdgCrt" class="w3-badge w3-red w3-small w3-left" style="margin-top:-5px;margin-left: 1px;">0</span>
+                    </div>
+
+                </div>
+                <div class="w3-rest bar-height">
+                    <input class="w3-input w3-border w3-round bar-search w3-merriweather" placeholder="{{txtBsc+'...'}}" type="text" maxlength="30" autocapitalize="off" autocorrect="off" spellcheck="false" autocomplete="off" ng-model="srch" ng-init="srch=''" ng-Keyup="configPages()">
+                </div>
+            </div>
+            <div class="w3-container w3-merriweather w3-center {{clt}}  bar-neg-sub" style="margin-top:60px;" ng-model="ngc">
+                <h3 ng-hide="ngc.length>15">{{ngc}}</h3><h5 ng-hide="ngc.length<16">{{ngc}}</h5>
+            </div>
+
+
+            <div class="w3-row cnt-ctr-sml w3-merriweather w3-card">
+                <div class="w3-container w3-col s5 w3-center" >
+                    <div onclick="document.getElementById('modCtg').style.display='block'" ng-hide="ctgs.length<2">
+                        <h4 class="notSelTxt" style="color: {{cblu}};">{{txtCtg}}</h4>
+                    </div>
+
+
+
+                </div>
+                <div class="w3-container w3-col s2 w3-center"><h4 style="color: #00000021;">|</h4></div>
+                <div class="w3-container w3-col s5 w3-center" onclick="document.getElementById('modSrt').style.display='block'">
+                    <h4 class="notSelTxt" style="color: {{cblu}};">{{txtSrt}}</h4>
+                </div>
+            </div>
+
+            <div class="w3-container cnt-ctr-lar">
+
+                <div class="w3-left w3-merriweather" style="margin-left:50px;" ng-hide="ctgs.length<2">
+                    {{txtCtg}}
+                    <div class="w3-dropdown-hover w3-merriweather">
+                        <button class="w3-button {{clt}}" style="width:250px">{{txtCtgCrt}}</button>
+                        <div class="w3-dropdown-content w3-bar-block ctnCtgDro {{clt}}" >
+                            <a href="" class="w3-bar-item w3-button" ng-repeat='ctg in ctgs' ng-click='selCtg(ctg)'>{{ctg.n}}</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="w3-right w3-merriweather" style="margin-right:50px;">
+                    {{txtSrt}}
+                    <div class="w3-dropdown-hover w3-merriweather">
+                        <button class="w3-button {{clt}}" style="width:180px">{{txtSrtCrt}}</button>
+                        <div class="w3-dropdown-content w3-bar-block ctnSrtDro {{clt}}">
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(0)">{{txtAlf}}</a>
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(1)">{{txtMyp}}</a>
+                            <a href="" class="w3-bar-item w3-button" ng-click="selSrt(2)">{{txtMnp}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="w3-container spc50" >
+
+                <div ng-init='configPages()'  class="w3-row-padding ctnItm">
+                    <div class="w3-col s12 m6 l4" ng-repeat='itm in itmsCur | orderBy:sort| startFromGrid: currentPage * pageSize | limitTo: pageSize '>
+                        <div class="w3-panel w3-card w3-white mrgItm w3-merriweather">
+                            <div ng-hide="!img"  class="w3-container w3-margin-bottom w3-center" style="height: 260px">
+                                <img ng-hide="{{itm.l=='null'?true:false}}" src="{{itm.l+'.jpg'}}" class="w3-round thbGrd" onload="ajIm(this)">
+                                <i ng-hide="{{itm.l=='null'?false:true}}" class="fa fa-image w3-round thbGrd" style="margin-top:60px;"></i>
+
+                            </div>
+                            <div class="w3-margin-top w3-margin-bottom w3-border-bottom"></div>
+                            <p class="w3-small" style="line-height: 0.7;" ng-hide="cla">{{itm.k}}</p>
+                            <p class="w3-small" style="line-height: 0.7;" ng-hide="uni">{{itm.u}}</p>
+                            <p style="line-height: 1.1; height: 35px;">{{itm.d}}</p>
+
+                            <div class="w3-row w3-center w3-margin-top w3-margin-bottom" style="height:40px;">
+                                <div class="w3-col w3-right" style="width:60px">
+
+                                    <i class="fa fa-cart-plus w3-xxlarge pointer" ng-click='addCrt($event.currentTarget,itm)'  style="color: {{cblu}};" ng-hide='!crt'></i>
+                                </div>
+                                <div class="w3-rest w3-center">
+                                    <label ng-class="{'w3-large':itm.p.length>12,'w3-xlarge':itm.p.length<=12}">{{itm.p}}</label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class='btn-group w3-center spc50'>
+                    <button type='button' class='w3-merriweather btnPag pointer' ng-hide='currentPage == 0' ng-click='ntr()'>< {{txtPrv}}</button>
+                    <label class="w3-merriweather w3-large w3-margin-left pagCur">{{currentPage+1}}</label><label class="w3-merriweather w3-large w3-margin-right">{{' / '+ pages.length }}</label>
+                    <button type='button' class='w3-merriweather btnPag pointer' ng-hide='currentPage >= itmsCur.length/pageSize - 1' , ng-click='nxt()'>{{txtNxt}} ></button>
+                </div>
+
+            </div>
+
+            <br><br><br>
+            <footer class="w3-container w3-padding-32 spc50 {{clt}}">
+                <div class="w3-row-padding w3-center">
+                    <div class="{{ txtInf==null||txtInf==''?'':'w3-half' }}" ng-hide="txtTel==null||txtTel==''?true:false">
+                        <div class="w3-container" id="contact">
+                            <h4 class="w3-merriweather">{{ngc}}</h4>
+                            <a href="tel:{{txtTel}}" ><i class="fa fa-phone"></i>{{txtTel}}</a><br>
+                            <a class="w3-margin-top" href="mailto:{{txtCor}}" ng-hide="txtCor==''||txtCor==null?true:false"><i class="fa fa-envelope"></i>{{txtCor}}</a>
+                        </div>
+                    </div>
+
+                    <div class="{{ txtTel==null||txtTel==''?'':'w3-half' }}" ng-hide="txtInf==null||txtInf==''?true:false">
+                        <p id="textInf" ></p>
+                    </div>
+
+
+                </div>
+                <div style="height:90px" ng-hide="!wat"></div>
+            </footer>
+            <a ng-hide="!wat" href="https://api.whatsapp.com/send?phone={{txtTel}}" class="btnWhts" target="_blank">
+                <i class="fa fa-whatsapp w3-xxxlarge"></i>
+            </a>
+
+
+            <div id="modCrt" class="w3-modal" style="padding-top:30px;z-index: 3000;">
+                <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px;overflow: auto; height: 90%;">
+
+                    <div class="w3-center"><br>
+                        <span onclick="document.getElementById('modCrt').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright" title="Close Modal">{{clo}} &times;</span>
+                    </div>
+                    <form class="w3-container w3-margin-top" ng-submit="snd()">
+                        <div class="w3-section">
+                            <div class="w3-padding-small">
+                                <i class="fa fa-user w3-xlarge inpDraLef"></i><input class="w3-input w3-border" style="padding-left: 35px;" placeholder="{{txtPlaNam}}" type="text" ng-model="namc" required>
+                            </div>
+
+                            <input class="w3-button w3-block w3-section w3-padding w3-margin-top w3-merriweather {{clt}}" type="submit" value="{{txtSct}}"  ng-hide="btc">
+                            <div class="w3-center" ng-hide="lod"><i class="fa fa-spinner w3-jumbo w3-spin"></i></div>
+                            <p ng-hide="itmsCrt.itms.length>0?true:false"  class="w3-display-middle">{{txtSin}}</p>
+                            <div class="w3-row w3-border-bottom w3-padding-16" ng-repeat='itm in itmsCrt.itms'>
+                                <div ng-hide="!img"  class="w3-col s3 m2 l2 w3-center">
+                                    <img ng-hide="{{itm.l=='null'?true:false}}" src="{{itm.l+'.jpg'}}" class="w3-round" style="width:90%;">
+
+                                    <i ng-hide="{{itm.l=='null'?false:true}}" class="fa fa-image w3-jumbo w3-round" style="width:90%;"></i>
+
+                                </div>
+                                <div class="w3-col s9 m10 l10">
+                                    <span class="w3-margin-left w3-merriweather" ng-hide="cla">{{itm.k}}</span><br>
+                                    <span class="w3-margin-left w3-merriweather" ng-hide="uni">{{itm.u}}</span><br>
+                                    <span class="w3-margin-left w3-merriweather">{{itm.d}}</span>
+                                    <div class="w3-row">
+                                        <div class="w3-col s2 m5 l5 w3-text-red">
+                                            <i class="fa fa-trash w3-xlarge w3-right" style="margin-top: 5px;" ng-click='delItmCrt(itm)'></i>
+                                        </div>
+                                        <div class="w3-col s10 m7 l7 ">
+                                            <i class="fa fa-plus-circle w3-xlarge w3-margin-right w3-right" ng-click='itm.q=itm.q+1' style="margin-top: 5px;"></i>
+
+                                            <span class="w3-margin-left w3-margin-right w3-xlarge w3-right"><input class="inNum" type="text" ng-model="itm.q" ></span>
+                                            <i class="fa fa-minus-circle w3-xlarge w3-right" ng-click='itm.q=itm.q-1<0?itm.q:itm.q-1' style="margin-top: 5px;"></i>
+
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+
+            <div id="modSrt" class="w3-modal" style="z-index: 3000;">
+                <div class="w3-modal-content w3-card-4">
+                    <header class="w3-container {{clt}}">
+                        <span onclick="document.getElementById('modSrt').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                        <h2>{{txtSrt}}</h2>
+                    </header>
+                    <div class="w3-container">
+                        <ul class="w3-ul w3-border-bottom">
+                            <li class="w3-container notSelTxt" ng-click="selSrt(0)">{{txtAlf}}</li>
+                            <li class="w3-container notSelTxt" ng-click="selSrt(1)">{{txtMyp}}</li>
+                            <li class="w3-container notSelTxt" ng-click="selSrt(2)">{{txtMnp}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div id="modCtg" class="w3-modal" style="z-index: 3000;">
+                <div class="w3-modal-content w3-card-4">
+                    <header class="w3-container {{clt}}">
+                        <span onclick="document.getElementById('modCtg').style.display='none'"
+                                class="w3-button w3-display-topright">&times;</span>
+                        <h2>{{txtCtg}}</h2>
+                    </header>
+                    <div class="w3-container" style="overflow: auto; max-height: 320px;">
+                        <ul class="w3-ul w3-monospace" ng-repeat='ctg in ctgs'>
+                            <li class="w3-border-bottom w3-container" ng-click='selCtg(ctg)'>{{ctg.n}}</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+
+        <script type="text/javascript">
+
+			angular.module('app', [])
+			  .controller('ctrMan',
+			    function($scope) {
+			      var modCtg = document.getElementById('modCtg');
+			      var modSrt = document.getElementById('modSrt');
+			      var modCrt = document.getElementById('modCrt');
+			      var bdgCrt = document.getElementById("bdgCrt");
+			      window.onclick = function(event) {
+			        if (event.target == modCtg) {
+			          modCtg.style.display = "none";
+			        }else if(event.target == modSrt){
+			          modSrt.style.display = "none";
+			        }
+			        else if(event.target == modCrt){
+			          modCrt.style.display = "none";
+			        }
+			      }
+			      $scope.currentPage = 0;
+			      $scope.pagSiz = 0;
+			      $scope.pageSize = 6;
+			      $scope.pages = [];
+			      $scope.itms = [];
+			      $scope.itmsCur = [];
+			      $scope.ctgs = [];
+			      $scope.itmsCrt = [];
+			      $scope.txtSrt = '...';
+			      $scope.txtCtg = '...';
+			      $scope.txtAlf = '...';
+			      $scope.txtMay = '...';
+			      $scope.txtMen = '...';
+			      $scope.txtNxt = '...';
+			      $scope.txtPrv = '...';
+			      $scope.txtSrtCrt = $scope.txtAlf;
+			      $scope.sort = 'd';
+			      $scope.ctg = '';
+			      $scope.txtTel='';
+			      $scope.txtCor='';
+			      $scope.txtInf='';
+			      $scope.txtSct='';
+			      $scope.txtPlaNam='';
+			      $scope.txtSct='';
+			      $scope.txtSin='';
+			      $scope.uni = false;
+			      $scope.cla = false;
+			      $scope.wat = false;
+			      $scope.crt = false;
+			      $scope.lod = true;
+			      $scope.btc = false;
+			      $scope.img = true;
+			      $scope.ctok='';
+			      $scope.ernw='';
+			      $scope.clt = 'w3-black';
+			      $scope.cblu = '#1A73E8';
+			      $scope.cgre = '#33AA66';
+			      $scope.clo = 'close';
+
+				  $scope.configPages = function() {
+				  		var q = $scope.srch;
+				  		try{
+				  			q = $scope.srch.replace(" ","");
+				  		}catch(e){
+
+				  		}
+				        if($scope.ctg=='' && q=='' ){
+				            $scope.itmsCur = $scope.itms;
+				        }else{
+
+				        	if(q != ''){
+				        		$scope.txtCtgCrt = $scope.ctgs[0].n;
+				        		$scope.ctg = 0;
+				        		$scope.currentPage = 0;
+				        	}
+				            $scope.itmsCur = [];
+				            try{
+				            	$scope.itms.forEach( function(val, ind, arr) {
+
+					                var ax = q==""?true:(val.d.toUpperCase().search(q.toUpperCase() ) > -1  );
+
+					                if( ($scope.ctg=='' || val.c==$scope.ctg) && ax ){
+					                    $scope.itmsCur.push(val);
+					                }
+					            });
+				            }catch(e){
+
+				            }
+				        }
+				        var intRef = 20;
+				        $scope.pages.length = 0;
+				        var ini = $scope.currentPage - 4;
+				        var fin = $scope.currentPage + 5;
+				        if (ini < 1) {
+				          ini = 1;
+				          fin = Math.ceil($scope.itmsCur.length / $scope.pageSize);
+				        } else {
+				            ini = -1;
+				            fin = Math.ceil($scope.itmsCur.length / $scope.pageSize);
+				        }
+				        if (ini < 1) ini = 1;
+				        for (var i = ini; i <= fin; i++) {
+				          $scope.pages.push({
+				            no: i
+				          });
+				        }
+				        if ($scope.currentPage >= $scope.pages.length)
+				          $scope.currentPage = $scope.pages.length;
+				      };
+
+
+
+			      $scope.setPage = function(index) {
+			        $scope.currentPage = index - 1;
+			      };
+
+			      $scope.nxt = function() {
+			        $scope.currentPage = $scope.currentPage + 1;
+			        topScr();
+			      };
+			      $scope.ntr = function() {
+			      	$scope.currentPage = $scope.currentPage - 1;
+			        topScr();
+			      };
+
+
+			      $scope.addCrt = function(e,itm){
+			        e.setAttribute('class','fa fa-check-circle w3-xxlarge pointer');
+			        e.style.color = $scope.cgre;
+				    addItmCrt(itm);
+				    setTimeout(function () {
+				      e.setAttribute('class','fa fa-cart-plus w3-xxlarge pointer');
+				      e.style.color = $scope.cblu;
+				    }, 600);
+
+
+			      }
+
+			      $scope.myCrt = function(){
+			        modCrt.style.display='block';
+			        $scope.itmsCrt = getStg();
+			      }
+			      $scope.delItmCrt = function(itm){
+			        $scope.itmsCrt = delItmCrt(itm);
+			      }
+			      $scope.selSrt = function(sel){
+			        switch(sel) {
+			          case 0:
+			            $scope.txtSrtCrt = $scope.txtAlf;
+			            $scope.sort = 'd';
+			            break;
+			          case 1:
+			            $scope.txtSrtCrt = $scope.txtMyp;
+			            $scope.sort = '-v';
+			            break;
+			          case 2:
+			            $scope.txtSrtCrt = $scope.txtMnp;
+			            $scope.sort = 'v';
+			            break;
+			        }
+			        modSrt.style.display = "none";
+			      }
+			      $scope.selCtg = function(ctg){
+
+			        $scope.txtCtgCrt = ctg.n;
+			        $scope.ctg = ctg.i==0?'':ctg.i;
+			        modCtg.style.display = "none";
+			        $scope.currentPage = 0;
+			        $scope.srch = '';
+			        $scope.configPages();
+			      }
+			      $scope.srchAll = function(){
+			        console.log("mycart: "+$scope.srch);
+
+			      }
+			      $scope.snd = function(){
+
+			        var text = $scope.txtPlaNam+": "+$scope.namc+"\n\n";
+			        var suc = true;
+
+			        $scope.itmsCrt.itms.forEach( function(v, i, ar) {
+
+			        	if( !(!isNaN(v.q) && !isNaN(parseFloat(v.q) ) ) ){
+			        		suc = false;
+			        		return;
+			        	}
+
+			            text += "*"+v.q+" -> "+v.d+" :"+ v.u+" : "+v.k+"\n";
+			        });
+
+			        if(suc){
+			        	setStg({});
+			            $scope.itmsCrt = [];
+			            bdgCrt.style.visibility = "hidden";
+			            modCrt.style.display = "none";
+
+				        window.open('https://api.whatsapp.com/send?phone='+encodeURIComponent($scope.txtTel)+'&text='+encodeURIComponent(text),'_blank')
+			        }else{
+			        	alert("only numeric values");
+			        }
+
+
+			      }
+			      addItmCrt(null);
+			      var unts = {};
+			      var result = data;
+
+
+			        var ctnMan = document.getElementById("ctnMan");
+			        ctnMan.style.visibility = "visible";
+			        var loader = document.getElementById("loader");
+			        loader.style.visibility = "hidden";
+			        var lg_v = document.getElementById("lg");
+			        var ngc = result.ngc;
+
+
+			        $scope.txtSrt = result.orp;
+			        $scope.txtCtg = result.ctgs;
+			        $scope.txtAlf = result.alf;
+			        $scope.txtMyp = result.myp;
+			        $scope.txtMnp = result.mnp;
+			        $scope.txtBsc = result.bsc;
+			        $scope.txtNxt = result.nxt;
+			      	$scope.txtPrv = result.prv;
+			        $scope.ctok = result.ctok;
+			        $scope.ernw = result.ernw;
+
+			        $scope.txtTel = result.tel2;
+			        $scope.txtCor = result.cor2;
+			        $scope.txtInf = result.dir2;
+
+			        $scope.img = result.img;
+
+			        $scope.uni = !result.uni;
+			        $scope.cla = !result.cla;
+			        $scope.clo = result.clo;
+
+
+			        $scope.wat = result.wha&&result.tel2!='';
+			        $scope.crt = result.crt&&result.tel2!='';
+			        $scope.txtSct = result.sct;
+			        $scope.txtPlaNam = result.nam;
+
+			        $scope.txtSin = result.sin;
+
+			        $scope.txtSct = result.sct;
+			        $scope.txtSrtCrt = $scope.txtAlf;
+
+			        $scope.clt = result.clt;
+			        $scope.ngc = ngc;
+
+
+			        if(result.lg.length>0){
+			          $scope.lg = result.lg;
+			        }else{
+			          lg_v.style.visibility = "hidden";
+			          $scope.lg = "0=="
+			        }
+
+			        result.und.forEach( function(val, ind, arr) {
+			            unts[val.i] = val.n;
+			        });
+
+
+			        $scope.itms = result.itm;
+			        $scope.ctgs = result.ctg;
+			        $scope.txtCtgCrt = $scope.ctgs[0].n;
+
+
+			        $scope.itms.forEach( function(val, ind, arr) {
+			            val.u = unts[val.u];
+
+			        });
+
+
+
+			        var link = document.createElement('link');
+			        link.rel = 'icon';
+			        document.getElementsByTagName('head')[0].appendChild(link);
+			        link.href = 'logo.png';
+			        $scope.currentPage = 1;
+			        $scope.configPages();
+			        topScr();
+					setTimeout(function () {
+				      	var el = document.getElementById('labNeg');
+					   	var divHeight = el.offsetHeight
+					   	var lineHeight = parseInt(el.style.lineHeight);
+					   	var lines = divHeight / lineHeight;
+	    				if( lines < 2){
+	    					el.style.lineHeight = "50px";
+	    				}
+	    				if($scope.ngc.length>25){
+							el.style.fontSize = "16px";
+	    				}
+	    				if($scope.ngc.length>40){
+							el.style.fontSize = "14px";
+	    				}
+	    				el.style.visibility = "visible";
+				    }, 400);
+			    })
+			.filter('startFromGrid', function() {
+			  return function(input, start) {
+			    start = +start;
+			    return input.slice(start);
+			  }
+			});
+			var stgLoc={};
+            function stgChk(){
+                var test = 'test';
+                try {
+                    localStorage.setItem(test, test);
+                    localStorage.removeItem(test);
+                    return true;
+                } catch(e) {
+                    return false;
+                }
+            }
+            function getStg(){
+                if( stgChk() ){
+                  var itmsAux = localStorage.getItem("mn_shop_13x");
+                  return itmsAux==null?{}:JSON.parse(itmsAux);
+                }else{
+                  return stgLoc;
+                }
+            }
+            function setStg(itms){
+                if( stgChk() ){
+                  localStorage.setItem("mn_shop_13x", JSON.stringify(itms) );
+                }else{
+                  stgLoc = itms;
+                }
+            }
+			function addItmCrt(itm){
+			    var itmsCrt = getStg();
+			    if(itmsCrt.itms==undefined){
+			        itmsCrt.itms = [];
+			        if(itm!=null){
+			          itm.q = 1;
+			          itmsCrt.itms.push(itm);
+			        }
+			      }else if(itm!=null){
+			          var aux = null;
+			          for(var i=0;i<itmsCrt.itms.length;i++){
+			            if(itmsCrt.itms[i].i==itm.i){
+			                aux=itmsCrt.itms[i];
+			                break;
+			              }
+			          }
+			          if(aux==null){
+			            itm.q = 1;
+			            itmsCrt.itms.push(itm);
+			          }else{
+			            aux.q +=1;
+			          }
+
+			      }
+			    setStg(itmsCrt);
+			    bdgCrt.innerHTML = itmsCrt.itms.length;
+			    bdgCrt.style.visibility = itmsCrt.itms.length==0? "hidden":"visible";
+
+			}
+			function delItmCrt(itm){
+			    var itmsCrt = getStg();
+			    var ind = -1;
+			    for(var i=0;i<itmsCrt.itms.length;i++){
+			      if(itmsCrt.itms[i].i==itm.i){
+			          ind=i;
+			          break;
+			        }
+			    }
+			    if(ind>-1){
+			      itmsCrt.itms.splice(ind, 1);
+			    }
+			    setStg(itmsCrt);
+			    bdgCrt.innerHTML = itmsCrt.itms.length;
+			    bdgCrt.style.visibility = itmsCrt.itms.length==0? "hidden":"visible";
+			    return itmsCrt;
+			}
+			function topScr() {
+			  document.body.scrollTop = 0;
+			  document.documentElement.scrollTop = 0;
+			}
+			function ajIm(el){
+				el.style.marginTop = ((260-el.offsetHeight)/2)+"px";
+			}
+			var data = /*#d4t4#*/ {"itm":[{"i":25,"c":5,"u":1,"d":"CABALLETE PLÁSTICO 1.85","p":"$403.00","v":403,"k":"CP185","l":"img_25","z":10},{"i":426,"c":42,"u":1,"d":"LUBRICANTE AFLOJATODO BYP 226ML","p":"$98.63","v":98.63,"k":"LABYP","l":"img_426","z":10},{"i":436,"c":43,"u":1,"d":"BISAGRA TUBULAR PULIDA 1","p":"$8.00","v":8,"k":"BIS100","l":"img_436","z":10},{"i":434,"c":43,"u":1,"d":"BISAGRA TUBULAR PULIDA 1\/2","p":"$8.00","v":8,"k":"BIS15","l":"img_434","z":10},{"i":435,"c":43,"u":1,"d":"BISAGRA TUBULAR PULIDA 3\/4","p":"$8.00","v":8,"k":"BIS34","l":"img_435","z":10},{"i":21,"c":43,"u":1,"d":"BISAGRA TUBULAR PULIDA 5\/8","p":"$8.00","v":8,"k":"BIS58","l":"img_21","z":10},{"i":398,"c":37,"u":1,"d":"BROCA ESCALONADA KMT 4-20 MM","p":"$138.00","v":138,"k":"8435340646953","l":"img_398","z":10},{"i":408,"c":37,"u":1,"d":"BROCA PARA METAL 1\/16","p":"$22.00","v":22,"k":"BPM116","l":"img_408","z":10},{"i":412,"c":37,"u":1,"d":"BROCA PARA METAL 1\/8","p":"$22.00","v":22,"k":"BPM18","l":"img_412","z":10},{"i":409,"c":37,"u":1,"d":"BROCA PARA METAL 3\/32","p":"$22.00","v":22,"k":"BPM332","l":"img_409","z":10},{"i":414,"c":37,"u":1,"d":"BROCA PARA METAL 5\/32","p":"$30.00","v":30,"k":"BPM532","l":"img_414","z":10},{"i":410,"c":37,"u":1,"d":"BROCA PARA METAL 5\/65","p":"$22.00","v":22,"k":"BPM564","l":"img_410","z":10},{"i":411,"c":37,"u":1,"d":"BROCA PARA METAL 7\/64","p":"$22.00","v":22,"k":"BPM764","l":"img_411","z":10},{"i":413,"c":37,"u":1,"d":"BROCA PARA METAL 9\/64","p":"$28.50","v":28.5,"k":"BPM964","l":"img_413","z":10},{"i":419,"c":37,"u":1,"d":"PUNTA PHILLIPS P\/TALADRO PH2","p":"$21.00","v":21,"k":"PPTP1","l":"img_419","z":10},{"i":26,"c":27,"u":1,"d":"CANALON 1 AGUA","p":"$375.00","v":375,"k":"CANS1","l":"img_26","z":10},{"i":385,"c":33,"u":1,"d":"CUTTER REFORZADO 18 MM","p":"$15.00","v":15,"k":"7505188043397","l":"img_385","z":10},{"i":400,"c":38,"u":1,"d":"ALMOHADILLA CON VELCRO 4 1\/2\"","p":"$35.00","v":35,"k":"7505188042437","l":"img_400","z":10},{"i":399,"c":38,"u":1,"d":"ALMOHADILLA CON VELCRO 7\"","p":"$65.00","v":65,"k":"7505188042444","l":"img_399","z":10},{"i":45,"c":38,"u":1,"d":"DISCO CORTE 7\" FANDELLI DCD 104","p":"$30.00","v":30,"k":"799592729436","l":"img_45","z":10},{"i":421,"c":38,"u":1,"d":"DISCO CORTE 775 AUSTROMEX 4 1\/2","p":"$10.00","v":10,"k":"737608022751","l":"img_421","z":10},{"i":44,"c":38,"u":1,"d":"DISCO CORTE 778 AUSTROMEX 4 1\/2","p":"$16.83","v":16.83,"k":"778","l":"img_44","z":10},{"i":377,"c":38,"u":1,"d":"DISCO DE CORTE 14\" BOSCH","p":"$81.25","v":81.25,"k":"3165140601429","l":"img_377","z":10},{"i":422,"c":38,"u":1,"d":"DISCO DE CORTE 4 1\/2 HAI CRAFT","p":"$10.00","v":10,"k":"7505188034180","l":"img_422","z":10},{"i":382,"c":38,"u":1,"d":"DISCO DE CORTE 4 1\/2 PINM","p":"$10.00","v":10,"k":"4485030811707","l":"img_382","z":10},{"i":291,"c":38,"u":1,"d":"DISCO DE CORTE 4.5 BOSCH","p":"$18.00","v":18,"k":"4059952524764","l":"img_291","z":10},{"i":46,"c":38,"u":1,"d":"DISCO DE CORTE 4.5 FANDELLI","p":"$25.00","v":25,"k":"799592746501","l":"img_46","z":10},{"i":47,"c":38,"u":1,"d":"DISCO DE CORTE 4.5 LEMAN","p":"$16.30","v":16.3,"k":"3661589095909","l":"img_47","z":10},{"i":48,"c":38,"u":1,"d":"DISCO DE CORTE 7","p":"$48.00","v":48,"k":"DDC7","l":"img_48","z":10},{"i":49,"c":38,"u":1,"d":"DISCO DE CORTE CINASA 4 1\/2","p":"$14.16","v":14.16,"k":"8136","l":"img_49","z":10},{"i":383,"c":38,"u":1,"d":"DISCO DE CORTE GRUESO 41\/2 X 1\/8","p":"$18.00","v":18,"k":"7505188034197","l":"img_383","z":10},{"i":387,"c":38,"u":1,"d":"DISCO DE DESBASTE 4 1\/2","p":"$25.00","v":25,"k":"7505188034203","l":"img_387","z":10},{"i":373,"c":38,"u":1,"d":"DISCO DE DESBASTE CINASA 4 1\/2","p":"$51.00","v":51,"k":"8137","l":"img_373","z":10},{"i":374,"c":38,"u":1,"d":"DISCO DESBASTE 7\" CINASA","p":"$30.00","v":30,"k":"8029A30","l":"img_374","z":10},{"i":50,"c":38,"u":1,"d":"DISCO LAMINADO FLAP FANDELLI G60","p":"$65.00","v":65,"k":"799592764598","l":"img_50","z":10},{"i":401,"c":38,"u":1,"d":"DISCO LAMINADO FLAP PINM G50","p":"$35.00","v":35,"k":"7505188034241","l":"img_401","z":10},{"i":388,"c":38,"u":1,"d":"DISCO LAMINADO FLAP PINM G60","p":"$35.00","v":35,"k":"7505188047265","l":"img_388","z":10},{"i":389,"c":38,"u":1,"d":"DISCO LAMINADO FLAP PINM G80","p":"$35.00","v":35,"k":"7505188034265","l":"img_389","z":10},{"i":51,"c":38,"u":1,"d":"DISCO LAMINADO FLAP WURTH G60","p":"$71.00","v":71,"k":"7503141586066","l":"img_51","z":10},{"i":384,"c":38,"u":1,"d":"DISCO LIJA 7\" VELCRO G100 KINGONE","p":"$15.00","v":15,"k":"7505188042598","l":"img_384","z":10},{"i":403,"c":38,"u":1,"d":"DISCO LIJA 7\" VELCRO G120 KINGONE","p":"$15.00","v":15,"k":"7505188042604","l":"img_403","z":10},{"i":402,"c":38,"u":1,"d":"DISCO LIJA 7\" VELCRO G40 KINGONE","p":"$15.00","v":15,"k":"7505188042567","l":"img_402","z":10},{"i":390,"c":38,"u":1,"d":"DISCO LIJA 7\" VELCRO G60 KINGONE","p":"$15.00","v":15,"k":"7505188042574","l":"img_390","z":10},{"i":391,"c":38,"u":1,"d":"DISCO LIJA 7\" VELCRO G80 KINGONE","p":"$15.00","v":15,"k":"7505188042581","l":"img_391","z":10},{"i":397,"c":35,"u":1,"d":"CLAVIJA ATERRIZADA METALICA","p":"$18.00","v":18,"k":"7505180045100","l":"img_397","z":10},{"i":396,"c":35,"u":1,"d":"CONTACTO ATERRIZADO METALICO","p":"$22.00","v":22,"k":"7305188045094","l":"img_396","z":10},{"i":317,"c":3,"u":6,"d":"ARANDELAS RONDANAS CON GOMA 1\/4 X 5\/8 50PZS","p":"$57.00","v":57,"k":"ARC58","l":"img_317","z":10},{"i":23,"c":3,"u":1,"d":"BROCHE\/MANIJA ALUMINIO DORADA","p":"$30.00","v":30,"k":"MAD1","l":"img_23","z":10},{"i":32,"c":3,"u":1,"d":"CARRETILLA EMBALADA 4 RUEDAS","p":"$54.00","v":54,"k":"CAR4","l":"img_32","z":10},{"i":31,"c":3,"u":1,"d":"CARRETILLA GALV. DE 1 RUEDA","p":"$6.80","v":6.8,"k":"CARG1","l":"img_31","z":10},{"i":357,"c":3,"u":1,"d":"CARRETILLA WILLCOTT EMBALADA","p":"$150.00","v":150,"k":"CARW","l":"img_357","z":10},{"i":34,"c":3,"u":1,"d":"CERROJO MACIZO GRANDE","p":"$145.00","v":145,"k":"CMGN","l":"img_34","z":10},{"i":441,"c":3,"u":1,"d":"CHAPA WEGO INSTAFACIL DER. NEGRA","p":"$190.00","v":190,"k":"MW2800D","l":"img_441","z":10},{"i":440,"c":3,"u":1,"d":"CHAPA WEGO INSTAFACIL IZQ. NEGRA","p":"$190.00","v":190,"k":"MW2800I","l":"img_440","z":10},{"i":36,"c":3,"u":1,"d":"CINTA DOBLE CARA POLYNOVA","p":"$145.00","v":145,"k":"CDCPN","l":"img_36","z":10},{"i":307,"c":3,"u":1,"d":"ESPUMA EXPANSIVA SISTA 500 ML","p":"$318.00","v":318,"k":"7891200343737","l":"img_307","z":10},{"i":381,"c":3,"u":1,"d":"FLEXOMETRO 7.5 METROS 04558","p":"$65.00","v":65,"k":"7505188045582","l":"img_381","z":10},{"i":53,"c":3,"u":2,"d":"FORJA POR KILO A MEDIDA","p":"$56.00","v":56,"k":"FKMED","l":"img_53","z":10},{"i":106,"c":3,"u":1,"d":"MANIJA GALVANIZADA TIPO PERICO","p":"$18.00","v":18,"k":"MTPER","l":"img_106","z":10},{"i":107,"c":3,"u":1,"d":"MANIJA GALVANIZADA TUBULAR","p":"$29.60","v":29.6,"k":"MGALT","l":"img_107","z":10},{"i":468,"c":3,"u":1,"d":"NUDO AZTECA PARA CUADRADO DE 1\/2","p":"$8.00","v":8,"k":"NUAZ1\/2","l":"null","z":10},{"i":378,"c":3,"u":1,"d":"NUDO FORJADO DE 1\/2","p":"$11.00","v":11,"k":"NUFO1\/2","l":"img_378","z":10},{"i":369,"c":3,"u":1,"d":"NUDO FRANCES DE 1\/2","p":"$31.50","v":31.5,"k":"NUF1\/2","l":"img_369","z":10},{"i":370,"c":3,"u":1,"d":"NUDO FRANCES DE 5\/8","p":"$31.50","v":31.5,"k":"NUF58","l":"img_370","z":10},{"i":124,"c":3,"u":1,"d":"NUDO INGLES DE 1\/2","p":"$11.00","v":11,"k":"NUI1\/2","l":"img_124","z":10},{"i":346,"c":3,"u":1,"d":"NUDO INGLES DE 5\/8","p":"$15.00","v":15,"k":"NUI5\/8","l":"img_346","z":10},{"i":371,"c":3,"u":1,"d":"NUDO NAPOLITANO DE 1\/2","p":"$15.00","v":15,"k":"NUN1\/2","l":"img_371","z":10},{"i":372,"c":3,"u":1,"d":"NUDO NAPOLITANO DE 1\/2 C","p":"$15.00","v":15,"k":"NUNC1\/2","l":"img_372","z":10},{"i":375,"c":3,"u":1,"d":"PASADOR DE PISO 30 CM REF.","p":"$81.25","v":81.25,"k":"A30H","l":"img_375","z":10},{"i":376,"c":3,"u":1,"d":"PASADOR DE PISO 40 CM REF.","p":"$98.36","v":98.36,"k":"A40H","l":"img_376","z":10},{"i":345,"c":3,"u":1,"d":"PIÑA DE HIERRO FORJADO","p":"$25.00","v":25,"k":"1593A","l":"img_345","z":10},{"i":224,"c":3,"u":1,"d":"PUNTA BARROCO DE 1\/2","p":"$12.50","v":12.5,"k":"PUBA1\/2","l":"img_224","z":10},{"i":225,"c":3,"u":1,"d":"PUNTA FLECHA DE 1\/2","p":"$21.00","v":21,"k":"PUFLE1\/2","l":"img_225","z":10},{"i":236,"c":3,"u":1,"d":"SEGUETA HECORT BIMETAL FINA","p":"$17.59","v":17.59,"k":"SEBF","l":"img_236","z":10},{"i":450,"c":3,"u":1,"d":"TEJUELO NEGRO 1\"","p":"$2.00","v":2,"k":"TN100","l":"img_450","z":10},{"i":404,"c":3,"u":1,"d":"TEJUELO NEGRO 11\/2","p":"$2.00","v":2,"k":"TN115","l":"img_404","z":10},{"i":451,"c":3,"u":1,"d":"TEJUELO NEGRO 11\/4","p":"$2.00","v":2,"k":"TN114","l":"img_451","z":10},{"i":452,"c":3,"u":1,"d":"TEJUELO NEGRO 2","p":"$2.00","v":2,"k":"TN200","l":"img_452","z":10},{"i":453,"c":3,"u":1,"d":"TEJUELO NEGRO 2¹½\"","p":"$2.00","v":2,"k":"TN250","l":"img_453","z":10},{"i":415,"c":3,"u":1,"d":"TEJUELO NEGRO 3\"","p":"$330.00","v":330,"k":"TN300","l":"img_415","z":10},{"i":267,"c":3,"u":1,"d":"VAGUETA 1\/2\" DORADA\/ORO","p":"$57.20","v":57.2,"k":"VDO1","l":"img_267","z":10},{"i":425,"c":36,"u":1,"d":"PINZA SANTUL DE CORTE DIAGONAL 4½\"","p":"$85.00","v":85,"k":"7501942376978","l":"img_425","z":10},{"i":459,"c":8,"u":1,"d":"PERFIL CUADRADO 1\" C18 ZINTRO","p":"$178.00","v":178,"k":"C10018Z","l":"null","z":10},{"i":407,"c":8,"u":1,"d":"PERFIL RECT. 1 1\/2 X 1\/2\" C18 ZINTRO","p":"$407.00","v":407,"k":"R15018Z","l":"img_407","z":10},{"i":139,"c":8,"u":1,"d":"PERFIL RECT. 2X1\" C18 ZINTRO","p":"$285.64","v":285.64,"k":"R20018Z","l":"img_139","z":10},{"i":478,"c":8,"u":1,"d":"PERFIL RECT. 3X1½\" C18 ZINTRO","p":"$414.25","v":414.25,"k":"R30018Z","l":"null","z":10},{"i":481,"c":8,"u":1,"d":"PERFIL RIEL PARA PUERTA 18 ZINTRO","p":"$259.97","v":259.97,"k":"140018Z","l":"null","z":10},{"i":18,"c":47,"u":1,"d":"BIRLO CON ACC. 10\"","p":"$6.00","v":6,"k":"BIR10","l":"img_18","z":10},{"i":19,"c":47,"u":1,"d":"BIRLO CON ACC. 12\"","p":"$7.00","v":7,"k":"BIR12","l":"img_19","z":10},{"i":20,"c":47,"u":1,"d":"BIRLO CON ACC. 8\"","p":"$5.00","v":5,"k":"BIR8","l":"img_20","z":10},{"i":309,"c":47,"u":6,"d":"PIJA AZUL 11\/4 X 3\/16 CONCRETO HEX.","p":"$177.00","v":177,"k":"PPC114","l":"img_309","z":10},{"i":310,"c":47,"u":6,"d":"PIJA AZUL 13\/4 X 1\/4 CONCRETO HEX.","p":"$166.50","v":166.5,"k":"PPC134","l":"img_310","z":10},{"i":311,"c":47,"u":6,"d":"PIJA AZUL 21\/4 X 3\/16 CONCRETO HEX.","p":"$228.80","v":228.8,"k":"PPC214","l":"img_311","z":10},{"i":313,"c":47,"u":6,"d":"PIJA HEXAGONAL 1 1\/2 X 5\/16 MADERA","p":"$348.40","v":348.4,"k":"PPM112","l":"img_313","z":10},{"i":312,"c":47,"u":6,"d":"PIJA HEXAGONAL 1 X 5\/16 MADERA","p":"$296.40","v":296.4,"k":"PPM1516","l":"img_312","z":10},{"i":314,"c":47,"u":6,"d":"PIJA HEXAGONAL 2 X 5\/16 MADERA","p":"$413.50","v":413.5,"k":"PPM200","l":"img_314","z":10},{"i":315,"c":47,"u":6,"d":"PIJA HEXAGONAL 3 X 5\/16 MADERA","p":"$552.50","v":552.5,"k":"PPM300","l":"img_315","z":10},{"i":316,"c":47,"u":6,"d":"PIJA HEXAGONAL 4 X 5\/16 MADERA","p":"$714.00","v":714,"k":"PPM400","l":"img_316","z":10},{"i":150,"c":47,"u":6,"d":"PIJA P\/BROCA 1 1\/2 HEX. 50 PZS","p":"$88.50","v":88.5,"k":"PPB112","l":"img_150","z":10},{"i":322,"c":47,"u":6,"d":"PIJA P\/BROCA 1 1\/2 PHILLIPS","p":"$63.70","v":63.7,"k":"PPB112P","l":"img_322","z":10},{"i":308,"c":47,"u":6,"d":"PIJA P\/BROCA 1 1\/2 TROPICALIZADA","p":"$165.00","v":165,"k":"PPB112T","l":"img_308","z":10},{"i":151,"c":47,"u":6,"d":"PIJA P\/BROCA 1 1\/4 HEX. 50 PZS","p":"$95.00","v":95,"k":"PPB114","l":"img_151","z":10},{"i":321,"c":47,"u":6,"d":"PIJA P\/BROCA 1 1\/4 PHILLIPS","p":"$58.50","v":58.5,"k":"PPB114P","l":"img_321","z":10},{"i":149,"c":47,"u":6,"d":"PIJA P\/BROCA 1 HEX. 100 PZS","p":"$100.00","v":100,"k":"PPB100","l":"img_149","z":10},{"i":320,"c":47,"u":6,"d":"PIJA P\/BROCA 1 PHILLIPS","p":"$49.50","v":49.5,"k":"PPB100P","l":"img_320","z":10},{"i":318,"c":47,"u":6,"d":"PIJA P\/BROCA 1\/2 PHILLIPS","p":"$30.00","v":30,"k":"PPB120P","l":"img_318","z":10},{"i":152,"c":47,"u":6,"d":"PIJA P\/BROCA 2 HEX. 50 PZS","p":"$110.00","v":110,"k":"PPB200","l":"img_152","z":10},{"i":323,"c":47,"u":6,"d":"PIJA P\/BROCA 2 PHILLIPS","p":"$81.90","v":81.9,"k":"PPB200P","l":"img_323","z":10},{"i":153,"c":47,"u":6,"d":"PIJA P\/BROCA 3 HEX. 100 PZS","p":"$273.00","v":273,"k":"PPB300","l":"img_153","z":10},{"i":319,"c":47,"u":6,"d":"PIJA P\/BROCA 3\/4 PHILLIPS","p":"$37.70","v":37.7,"k":"PPB340P","l":"img_319","z":10},{"i":463,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 1.10","p":"$154.00","v":154,"k":"PTF110","l":"img_463","z":10},{"i":482,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 1.60","p":"$198.24","v":198.24,"k":"PTF160","l":"null","z":10},{"i":324,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 2.50","p":"$375.00","v":375,"k":"PTF250","l":"img_324","z":10},{"i":325,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 3.00 MT","p":"$420.12","v":420.12,"k":"PTF300","l":"img_325","z":10},{"i":454,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 3.60 MT RPJA","p":"$540.00","v":540,"k":"PTF360R","l":"img_454","z":10},{"i":327,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 4.00","p":"$560.16","v":560.16,"k":"PTF400","l":"img_327","z":10},{"i":328,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 4.60","p":"$630.18","v":630.18,"k":"PTF450","l":"img_328","z":10},{"i":329,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 5.00","p":"$700.20","v":700.2,"k":"PTF500","l":"img_329","z":10},{"i":330,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 5.50","p":"$770.22","v":770.22,"k":"PTF550","l":"img_330","z":10},{"i":331,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 6.00","p":"$840.24","v":840.24,"k":"PTF600","l":"img_331","z":10},{"i":332,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA 7.00","p":"$980.28","v":980.28,"k":"PTF700","l":"img_332","z":10},{"i":477,"c":26,"u":1,"d":"PLASTITEJA DE FABRICA MEDIDA ESPECIAL","p":"$157.50","v":157.5,"k":"PTFME1","l":"null","z":10},{"i":368,"c":11,"u":4,"d":"LÁMINA LISA DE POLICARBONATO 1.22","p":"$311.10","v":311.1,"k":"LPOL122","l":"img_368","z":10},{"i":62,"c":11,"u":4,"d":"LÁMINA LISA DE POLICARBONATO 1.83","p":"$466.65","v":466.65,"k":"LPOL183","l":"img_62","z":10},{"i":63,"c":11,"u":4,"d":"LÁMINA LISA DE POLICARBONATO 2.10","p":"$535.50","v":535.5,"k":"LPOL210","l":"img_63","z":10},{"i":392,"c":11,"u":1,"d":"PERFIL H POLIC. CLIP A 7.32","p":"$780.00","v":780,"k":"PHPC732","l":"img_392","z":10},{"i":134,"c":11,"u":1,"d":"PERFIL H POLICARBONATO A 7.32","p":"$414.00","v":414,"k":"PHP732","l":"img_134","z":10},{"i":145,"c":11,"u":1,"d":"PERFIL U POLICARBONATO A 7.32","p":"$253.00","v":253,"k":"PUP732","l":"img_145","z":10},{"i":234,"c":11,"u":5,"d":"ROLLO LÁMINA LISA DE POLICARBONATO 1.22","p":"$3,015.76","v":3015.76,"k":"RLPOL122","l":"img_234","z":10},{"i":344,"c":11,"u":5,"d":"ROLLO LÁMINA LISA DE POLICARBONATO 1.83","p":"$4,523.64","v":4523.64,"k":"RP183","l":"img_344","z":10},{"i":365,"c":11,"u":5,"d":"ROLLO LÁMINA LISA DE POLICARBONATO 2.10","p":"$5,192.00","v":5192,"k":"RP210","l":"img_365","z":10},{"i":470,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 2.44","p":"$570.96","v":570.96,"k":"LPE244","l":"img_470","z":10},{"i":471,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 3.05","p":"$713.70","v":713.7,"k":"LPE305","l":"img_471","z":10},{"i":469,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 3.66","p":"$856.44","v":856.44,"k":"LPE366","l":"img_469","z":10},{"i":472,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 4.27","p":"$999.18","v":999.18,"k":"LPE427","l":"img_472","z":10},{"i":473,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 4.88","p":"$1,141.92","v":1141.92,"k":"LPE488","l":"img_473","z":10},{"i":474,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 5.49","p":"$1,284.66","v":1284.66,"k":"LPE549","l":"img_474","z":10},{"i":465,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 6.10","p":"$1,427.40","v":1427.3999999999999,"k":"LPE610","l":"img_465","z":10},{"i":466,"c":46,"u":1,"d":"POLICARBONATO ESTRUCTURAL R101 7.32","p":"$1,712.88","v":1712.88,"k":"LPE732","l":"img_466","z":10},{"i":232,"c":41,"u":1,"d":"RODAJA CON PROTECCION DE 3\"","p":"$181.50","v":181.5,"k":"7505188041319","l":"img_232","z":10},{"i":380,"c":41,"u":1,"d":"RODAJA GIRATORIA 3\" CON FRENO","p":"$42.00","v":42,"k":"7505188041317","l":"img_380","z":10},{"i":423,"c":41,"u":1,"d":"RODAJA GRIS GIRATORIA 2\"","p":"$45.00","v":45,"k":"7505188046817","l":"img_423","z":10},{"i":424,"c":41,"u":1,"d":"RODAJA GRIS GIRATORIA 2½\"","p":"$65.00","v":65,"k":"7505188046824","l":"img_424","z":10},{"i":360,"c":34,"u":1,"d":"SILICON PARA POLICARBONATO","p":"$135.00","v":135,"k":"SPPOL","l":"img_360","z":10},{"i":418,"c":34,"u":1,"d":"SILICON POLIURETANO","p":"$150.00","v":150,"k":"SP3","l":"img_418","z":10},{"i":336,"c":34,"u":1,"d":"SILICON ROJO ALTA TEMPERATURA 300ML","p":"$201.50","v":201.5,"k":"7501316150661","l":"img_336","z":10},{"i":237,"c":34,"u":1,"d":"SILICON ROJO ALTA TEMPERATURA 70ML","p":"$72.00","v":72,"k":"17566","l":"img_237","z":10},{"i":394,"c":34,"u":1,"d":"SILICÓN SELLADOR BYP BLANCO 280 ML","p":"$57.00","v":57,"k":"7502222813206","l":"img_394","z":10},{"i":395,"c":34,"u":1,"d":"SILICÓN SELLADOR BYP TRANSP 280 ML","p":"$57.00","v":57,"k":"7502222813213","l":"img_395","z":10},{"i":432,"c":40,"u":1,"d":"TAQUETE DE EXPANSIÓN 1\/2\" C\/TORNILLO","p":"$8.00","v":8,"k":"TAQEX12","l":"img_432","z":10},{"i":417,"c":40,"u":1,"d":"TAQUETE DE EXPANSIÓN 1\/4\" C\/TORNILLO","p":"$8.00","v":8,"k":"TAQEX14","l":"img_417","z":10},{"i":430,"c":40,"u":1,"d":"TAQUETE DE EXPANSIÓN 3\/16\" C\/TORNILLO","p":"$8.00","v":8,"k":"TAQEX316","l":"img_430","z":10},{"i":431,"c":40,"u":1,"d":"TAQUETE DE EXPANSIÓN 3\/8\" C\/TORNILLO","p":"$8.00","v":8,"k":"TAQEX38","l":"img_431","z":10},{"i":433,"c":40,"u":1,"d":"TAQUETE PLASTICO 1\/2 PARA TABLAROCA","p":"$8.00","v":8,"k":"TAQ12TP","l":"img_433","z":10}],"ctg":[{"i":5,"n":"ACCESORIOS PARA TECHOS"},{"i":42,"n":"AEROSOLES"},{"i":43,"n":"BISAGRAS"},{"i":37,"n":"BROCAS"},{"i":27,"n":"CANALETAS"},{"i":33,"n":"CORTE"},{"i":38,"n":"DISCOS"},{"i":35,"n":"ELECTRICOS"},{"i":3,"n":"HERRAJES"},{"i":36,"n":"HERRMAIENTA"},{"i":8,"n":"PERFILES"},{"i":47,"n":"PIJAS Y TORNILLOS"},{"i":26,"n":"PLASTITEJA FABRICA"},{"i":11,"n":"POLICARBONATO LISO"},{"i":46,"n":"POLICARBONATO R101"},{"i":41,"n":"RODAJAS"},{"i":34,"n":"SELLADORES"},{"i":40,"n":"TAQUETES"}],"und":[{"i":1,"n":"PIEZA"},{"i":2,"n":"KILO"},{"i":4,"n":"METRO LINEAL"},{"i":5,"n":"ROLLO"},{"i":6,"n":"CIENTO"}],"ngc":"Boch's Láminas y Herrajes","tel2":"7751142746","cor2":"gboch60@gmail.com","dir2":"Laminas - Perfiles - Herrajes","alf":"Alfabeto","myp":"Mayor Precio","mnp":"Menor Precio","ctgs":"Categoría","orp":"Ordenar Por","bsc":"Buscar","crt":true,"nam":"Nombre","sct":"Comprar Ahora","ernw":"Error al conectarse al servidor, compruebe su conexión a internet e intente nuevamente.","img":true,"uni":true,"cla":true,"wha":true,"clo":"Cerrar","nxt":"Siguiente","prv":"Anterior","sin":"Sin Información","clt":"w3-red","tmp":1792420900422,"lg":"logo"} /*#d4t4#*/;
+		</script>
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
