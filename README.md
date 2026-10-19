@@ -1,2 +1,2 @@
-# Catalogo-Laminas-y-Herrajess
+# Catalogo-Laminas-y-Herrajes
 Laminas, Perfiles, Herrajes y todo lo relacionado a tejados.
